@@ -9,8 +9,6 @@ const {
   loginUser,
 } = require("../controllers/userController");
 
-router.use(accessControlAllowOrigin);
-
 router.post("/register", registerUser);
 
 router.post("/login", loginUser);

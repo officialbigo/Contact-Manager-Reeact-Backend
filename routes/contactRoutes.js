@@ -11,7 +11,6 @@ const {
   // deleteAllContacts,
 } = require(`../controllers/contactController`);
 const validateToken = require("../middleware/validateTokenHandler");
-router.use(accessControlAllowOrigin);
 
 router.use(validateToken);
 router
