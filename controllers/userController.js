@@ -52,6 +52,8 @@ const loginUser = asyncHandler(async (req, res) => {
       process.env.ACCESS_TOKEN_SECRET,
       { expiresIn: "30d" }
     );
+    //Changed
+    res.set("Access-Control-Allow-Origin", "*");
     res.status(200).json({ accessToken });
   } else {
     res.status(401);
