@@ -2,7 +2,7 @@ const express = require("express");
 const connectDb = require("./config/dbConnection");
 const errorHandler = require("./middleware/errorHandler");
 const app = express();
-
+// const accessControlAllowOrigin=require("./middleware/accessControlAllowOrigin")
 // {
 //   origin: [
 //     "http://localhost:3000",
@@ -11,19 +11,17 @@ const app = express();
 //   ],
 // }
 
-const cors = require("cors");
+// const cors = require("cors");
+
 // app.use(cors());
 
-// app.get("/cors", (req, res) => {
-//   // res.set("Access-Control-Allow-Origin", "*");
-//   res.send({ msg: "This has CORS enabled 🎈" });
-// });
+// app.use(accessControlAllowOrigin)
 require("dotenv").config();
 connectDb();
 const port = process.env.PORT || 5000;
 app.use(express.json());
-app.use(`/api/contacts`, cors(), require("./routes/contactRoutes"));
-app.use(`/api/users`, cors(), require("./routes/userRoutes"));
+app.use(`/api/contacts`, require("./routes/contactRoutes"));
+app.use(`/api/users`, require("./routes/userRoutes"));
 app.use(errorHandler);
 app.listen(port, () => {
   console.log(`this is soo fun , I am in port ${port}`);
