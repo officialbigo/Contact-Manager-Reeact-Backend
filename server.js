@@ -43,7 +43,14 @@ const app = express();
 // app.use(cors(corsOptions));
 
 const cors = require("cors");
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "https://trk-contact-manager.netlify.app",
+    ],
+  })
+);
 
 require("dotenv").config();
 connectDb();
