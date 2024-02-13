@@ -1,8 +1,7 @@
 const express = require("express");
 const connectDb = require("./config/dbConnection");
 const errorHandler = require("./middleware/errorHandler");
-const cors = require(`cors`);
-require("dotenv").config();
+// const cors = require(`cors`);
 const app = express();
 
 // const allowedOrigins = [
@@ -19,12 +18,14 @@ const app = express();
 //   },
 //   optionsSuccessStatus: 200,
 // };
-app.use(
-  cors({
-    origin: "*",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-  })
-);
+
+// app.use(
+//   cors({
+//     origin: "*",
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//   })
+// );
+
 // app.use(
 //   cors({
 //     origin: [
@@ -34,17 +35,28 @@ app.use(
 //     preflightContinue: true,
 //   })
 // );
+
+// const corsOptions = {
+//   credentials: true,
+//   origin: ["*"],
+// };
+// app.use(cors(corsOptions));
+
+const cors = require("cors");
+app.use(cors());
+
+require("dotenv").config();
 connectDb();
-const port = process.env.PORT || 5001;
+const port = process.env.PORT || 5000;
 app.use(express.json());
-app.post("/sample", (req, res) => {
-  const body = req.body;
-  console.log(body);
-  res.send("ok");
-});
-app.use("/api", (req, res) => {
-  res.send("working");
-});
+// app.post("/sample", (req, res) => {
+//   const body = req.body;
+//   console.log(body);
+//   res.send("ok");
+// });
+// app.use("/api", (req, res) => {
+//   res.send("working");
+// });
 app.use(`/api/contacts`, require("./routes/contactRoutes"));
 app.use(`/api/users`, require("./routes/userRoutes"));
 app.use(errorHandler);
