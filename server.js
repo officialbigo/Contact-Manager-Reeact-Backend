@@ -48,7 +48,7 @@ app.use(
     origin: [
       "http://localhost:3000",
       "https://trk-contact-manager.netlify.app",
-      "https://contact-manager-frontend-3k40.onrender.com",
+      "https://contact1-manager-frontend-3k40.onrender.com",
     ],
   })
 );
