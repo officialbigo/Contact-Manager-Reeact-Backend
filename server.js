@@ -42,16 +42,16 @@ const app = express();
 // };
 // app.use(cors(corsOptions));
 
+// {
+//   origin: [
+//     "http://localhost:3000",
+//     "https://trk-contact-manager.netlify.app",
+//     "https://contact1-manager-frontend-3k40.onrender.com",
+//   ],
+// }
+
 const cors = require("cors");
-app.use(
-  cors({
-    origin: [
-      "http://localhost:3000",
-      "https://trk-contact-manager.netlify.app",
-      "https://contact1-manager-frontend-3k40.onrender.com",
-    ],
-  })
-);
+app.use(cors());
 
 require("dotenv").config();
 connectDb();
