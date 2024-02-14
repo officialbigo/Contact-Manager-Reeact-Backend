@@ -36,6 +36,7 @@ const registerUser = asyncHandler(async (req, res) => {
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   console.log("it is working the login service is working!!!!!", req.body);
+  console.log(req.getHeaders());
   if (!email || !password) {
     res.status(400);
     throw new Error("all fields are mandatory");

@@ -44,7 +44,7 @@ app.all("*", function (req, res, next) {
   );
 
   if (req.method == "OPTIONS") {
-    console.log(res.getHeaders());
+    // console.log(res.getHeaders());
     res.sendStatus(200);
   } else {
     next();
