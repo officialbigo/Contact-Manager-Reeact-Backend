@@ -34,6 +34,7 @@ const registerUser = asyncHandler(async (req, res) => {
 //@route POST /api/login
 //@access public
 const loginUser = asyncHandler(async (req, res) => {
+  console.log("it is working the login service is working!!!!!");
   const { email, password } = req.body;
   if (!email || !password) {
     res.status(400);
