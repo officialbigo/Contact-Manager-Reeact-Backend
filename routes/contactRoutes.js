@@ -1,5 +1,4 @@
 const express = require("express");
-const accessControlAllowOrigin = require("../middleware/accessControlAllowOrigin");
 
 const router = express.Router();
 const {

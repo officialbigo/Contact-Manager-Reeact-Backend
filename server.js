@@ -3,17 +3,17 @@ const connectDb = require("./config/dbConnection");
 const errorHandler = require("./middleware/errorHandler");
 const app = express();
 
-// {
-//   origin: [
-//     "http://localhost:3000",
-//     "https://trk-contact-manager.netlify.app",
-//     "https://contact1-manager-frontend-3k40.onrender.com",
-//   ],
-// }
-
 const cors = require("cors");
 
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "https://trk-contact-manager.netlify.app",
+      "https://contact-manager-frontend-3k40.onrender.com/",
+    ],
+  })
+);
 
 require("dotenv").config();
 connectDb();

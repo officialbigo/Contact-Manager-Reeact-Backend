@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const validateToken = require("../middleware/validateTokenHandler");
-const accessControlAllowOrigin = require("../middleware/accessControlAllowOrigin");
 
 const {
   registerUser,
