@@ -44,6 +44,7 @@ app.all("*", function (req, res, next) {
   );
 
   if (req.method == "OPTIONS") {
+    console.log(res);
     res.sendStatus(200);
   } else {
     next();
