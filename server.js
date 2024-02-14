@@ -3,17 +3,17 @@ const connectDb = require("./config/dbConnection");
 const errorHandler = require("./middleware/errorHandler");
 const app = express();
 
-const cors = require("cors");
+// const cors = require("cors");
 
-app.use(
-  cors({
-    origin: [
-      // "http://localhost:3000",
-      "https://trk-contact-manager.netlify.app",
-      // "https://contact-manager-frontend-3k40.onrender.com/",
-    ],
-  })
-);
+// app.use(
+//   cors({
+//     origin: [
+//       // "http://localhost:3000",
+//       "https://trk-contact-manager.netlify.app",
+//       // "https://contact-manager-frontend-3k40.onrender.com/",
+//     ],
+//   })
+// );
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -32,19 +32,19 @@ app.use((req, res, next) => {
   next();
 });
 
-app.options("*", (req, res) => {
-  console.log("preflight");
-  if (
-    req.headers.origin === "https://trk-contact-manager.netlify.app" &&
-    allowMethods.includes(req.headers["access-control-request-method"]) &&
-    allowHeaders.includes(req.headers["access-control-request-headers"])
-  ) {
-    console.log("pass");
-    return res.status(204).send();
+app.all("*", function (req, res, next) {
+  console.log("fetching for request plus request in log tracker");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild"
+  );
+  res.header("Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, OPTIONS");
+
+  if (req.method == "OPTIONS") {
+    res.send(200);
   } else {
-    console.log("fail");
-    allowMethods.includes(req.headers["access-control-request-method"]) &&
-      allowHeaders.includes(req.headers["access-control-request-headers"]);
+    next();
   }
 });
 require("dotenv").config();
