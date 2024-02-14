@@ -53,7 +53,7 @@ const loginUser = asyncHandler(async (req, res) => {
       { expiresIn: "30d" }
     );
     //Changed
-    res.set("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Origin", "*");
     res.status(200).json({ accessToken });
   } else {
     res.status(401);
