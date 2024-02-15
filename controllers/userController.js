@@ -33,33 +33,31 @@ const registerUser = asyncHandler(async (req, res) => {
 //@desc sends the login input
 //@route POST /api/login
 //@access public
+
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
-  res.status(200).json({ email, password });
-  // console.log("it is working the login service is working!!!!!", req.body);
-  // console.log(req.getHeaders());
-  // if (!email || !password) {
-  //   res.status(400);
-  //   throw new Error("all fields are mandatory");
-  // }
-  // const user = await User.findOne({ email });
-  // if (user && (await bcrypt.compare(password, user.password))) {
-  //   const accessToken = jwt.sign(
-  //     {
-  //       user: {
-  //         username: user.username,
-  //         email: user.email,
-  //         id: user.id,
-  //       },
-  //     },
-  //     process.env.ACCESS_TOKEN_SECRET,
-  //     { expiresIn: "30d" }
-  //   );
-  //   res.status(200).json({ accessToken });
-  // } else {
-  //   res.status(401);
-  //   throw new Error("invalid username or password");
-  // }
+  if (!email || !password) {
+    res.status(400);
+    throw new Error("all fields are mandatory");
+  }
+  const user = await User.findOne({ email });
+  if (user && (await bcrypt.compare(password, user.password))) {
+    const accessToken = jwt.sign(
+      {
+        user: {
+          username: user.username,
+          email: user.email,
+          id: user.id,
+        },
+      },
+      process.env.ACCESS_TOKEN_SECRET,
+      { expiresIn: "30d" }
+    );
+    res.status(200).json({ accessToken });
+  } else {
+    res.status(401);
+    throw new Error("invalid username or password");
+  }
 });
 
 //@desc post user details

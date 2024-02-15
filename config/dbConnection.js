@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
-const connectDb = async () => {
+const asyncHandler = require("express-async-handler");
+
+const connectDb = asyncHandler(async () => {
   try {
     const connect = await mongoose.connect(process.env.CONNECTION_STRING);
     console.log(
@@ -10,6 +12,6 @@ const connectDb = async () => {
   } catch {
     process.exit(1);
   }
-};
+});
 
 module.exports = connectDb;
