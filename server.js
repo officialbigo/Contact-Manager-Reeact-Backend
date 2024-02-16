@@ -8,10 +8,7 @@ const cors = require("cors");
 
 app.use(
   cors({
-    origin: [
-      "http://localhost:3000",
-      "https://trk-contact-manager.netlify.app",
-    ],
+    origin: ["https://trk-contact-manager.netlify.app"],
   })
 );
 
